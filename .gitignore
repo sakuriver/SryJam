@@ -1,0 +1,30 @@
+# gitignore for C++
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Visual Studio Files
+Debug
+Release
+*.suo
+*.csproj.user
+*.vbproj.user
+ipch
+*sdf
+
+# Ignore Directory
+/Effekseer0620_beta1
+/Debug
+/Release
+/DxLib_VC
+/GGJ/Resources
