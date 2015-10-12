@@ -32,7 +32,6 @@ Player_K::Player_K()
 	this->attackFrameNo[1] = 30;
 	this->attackMotionList[0] = 1;
 	this->attackMotionList[1] = 2;
-
 }
 
 void Player_K::setXY(const float x, const float y, const int _dic){
@@ -203,8 +202,9 @@ void Player_K::move(){
 	}
 
 	if (angle != -1){
-		cmx += fcos[angle] * mv;
-		cmy -= fsin[angle] * mv;
+		// キャラクターの加速度について、計算をする
+		cmx += fcos[angle] * 0.1f;
+		cmy -= fsin[angle] * 0.1f;
 	}
 
 

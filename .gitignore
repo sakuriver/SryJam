@@ -28,3 +28,6 @@ ipch
 /Release
 /DxLib_VC
 /GGJ/Resources
+
+# Ignore File
+/GGJ/Log.txt

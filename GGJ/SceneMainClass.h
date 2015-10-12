@@ -7,7 +7,6 @@
 #include "Enemy.h"
 
 using namespace std;
-
 class SceneMainClass : public SceneBaseClass
 {
 public:
@@ -20,8 +19,7 @@ public:
 private:
 	Enemy* boss;
 	int stageTime[3];
-	Player_K* corona = new Player_K;
-	Animation* Eanim = new Animation;
+	Player_K* corona;
 	int Time[2];
 	std::vector<MapObject*> star;
 	std::vector<MapObject*> rt;

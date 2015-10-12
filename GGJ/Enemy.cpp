@@ -22,13 +22,9 @@ e->render()
 /* コンストラクタ */
 /* bossの画像ファイルパスが記述されたテキストファイルを引数に取る */
 Enemy::Enemy(char *str){
-	char buff[512];
 	int fp = FileRead_open(str), i=0;
 
 	/* bossの画像ハンドルを格納 */
-/*	while (FileRead_scanf(fp, "%s", buff) == 1){
-		imgHandle[i] = LoadGraph(buff);
-	}*/
 	imgHandle[0] = LoadGraph("Resources/tori_normal.png");
 	imgHandle[1] = LoadGraph("Resources/tori_charge.png");
 	imgHandle[2] = LoadGraph("Resources/tori_attack.png");

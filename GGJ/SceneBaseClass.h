@@ -27,7 +27,12 @@ private:
 class SceneBaseClass
 {
 public:
-	SceneBaseClass(){};
+	SceneBaseClass(){
+	    this->nextSceneName = "";
+		this->initialized = false;
+		this->bgGraphH = 0;
+		this->playSoundF = false;
+	};
 	virtual ~SceneBaseClass(){};
 	virtual void initialize(::Effekseer::Manager* g_manager){ };
 	virtual void update(::Effekseer::Manager* g_manager){};
@@ -41,9 +46,9 @@ public:
 	void setPlaySoundFlag(bool playSoundF) { this->playSoundF = playSoundF; }
 	void setTweetMessage(char* tweetFont_) { memcpy(&this->tweetFont_[0][0], tweetFont_, strlen(tweetFont_)); };
 protected:
-	char* nextSceneName = "";
-	bool initialized = false;
-	int  bgGraphH = 0;
-	bool playSoundF = false;
+	char* nextSceneName;
+	bool initialized;
+	int  bgGraphH;
+	bool playSoundF;
 	char tweetFont_[5][1024];
 };

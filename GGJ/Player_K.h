@@ -67,8 +67,6 @@ private:
 
 	float x_, y_;
 
-	//‰Á‘¬“x
-	const float mv = 0.1f;
 	float cmx;
 	float cmy;
 

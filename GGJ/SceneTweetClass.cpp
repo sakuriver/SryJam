@@ -86,7 +86,7 @@ void SceneTweetClass::update(::Effekseer::Manager* g_manager){
 		ChangeFont("‚l‚r –¾’©");
 		DrawGraph(0, 0, tweet_[0], TRUE);
 		DrawGraph(137, 177, tweet_[2], TRUE);
-		SetKeyInputStringColor(black, GetColor(255, 255, 255), GetColor(255, 255, 255)
+		SetKeyInputStringColor(GetColor(0, 0, 0), GetColor(255, 255, 255), GetColor(255, 255, 255)
 			, GetColor(255, 255, 255), GetColor(255, 255, 255), GetColor(255, 255, 255)
 			, GetColor(255, 255, 255), GetColor(255, 255, 255), GetColor(255, 255, 255)
 			, GetColor(255, 255, 255), GetColor(255, 255, 255));
@@ -203,7 +203,7 @@ void SceneTweetClass::drawTweet(){
 	ChangeFont("‚l‚r –¾’©");
 	DrawGraph(0, 0, tweet_[0], TRUE);
 	DrawGraph(137, 177, tweet_[2], TRUE);
-	SetKeyInputStringColor(black, GetColor(255, 255, 255), GetColor(255, 255, 255)
+	SetKeyInputStringColor(GetColor(0, 0, 0), GetColor(255, 255, 255), GetColor(255, 255, 255)
 		, GetColor(255, 255, 255), GetColor(255, 255, 255), GetColor(255, 255, 255)
 		, GetColor(255, 255, 255), GetColor(255, 255, 255), GetColor(255, 255, 255)
 		, GetColor(255, 255, 255), GetColor(255, 255, 255));

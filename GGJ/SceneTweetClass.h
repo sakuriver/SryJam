@@ -69,8 +69,6 @@ private:
 	//tweet
 	int tweet_[4];
 
-	const int black = GetColor(0, 0, 0);
-
 	int enterCount;
 
 	int bg_mist;

@@ -13,11 +13,11 @@ void SceneMainClass::initialize(::Effekseer::Manager* g_manager) {
 	this->rtScore = 0;
 
 	this->boss = new Enemy("Resources/boss/boss1.txt");
+	this->corona = new Player_K();
 	this->bossApeearFlg = false;
 	this->bossDeathFlg = false;
 	this->stageClearFlg = false;
 	this->bossBattleBgmH = LoadSoundMem("Resources/game_boss.ogg");
-
 	this->bgGraphH = LoadGraph("Resources/main_bg.png");
 
 	this->iconWindowH = LoadGraph("Resources/ico_window.png");
@@ -188,7 +188,7 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 	DrawGraph(0, 0, this->bgGraphH, true);
 
-	if (this->time < 0) {
+	if (this->time < 0 && this->initialized) {
 	    this->boss->render();
 	}
 
@@ -208,8 +208,11 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 		block[i]->render(corona->returnX(), corona->returnY());
 	}
 
-	corona->render();
-	if (body_power != NULL && corona->getAttackMotionNo() == 1 && corona->getAttackNowMotionFrameNo() == 1) {
+	if (this->initialized) {
+	    corona->render();
+	}
+
+	if (this->initialized && body_power != NULL && corona->getAttackMotionNo() == 1 && corona->getAttackNowMotionFrameNo() == 1) {
 		int body_handle = g_manager->Play(body_power, 0.0f, 0.0f, 0.0f);
 		g_manager->SetScale(body_handle, 20, 20, 20);
 		g_manager->SetLocation(body_handle, corona->returnX() + 140, 720 - corona->returnY() - 90, 0.0f);
@@ -223,26 +226,27 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 	int firstTime = (int)(this->time / 10);
 	int secondTime = time - (firstTime * 10);
 
-	if (time <= 100 && time >= 0) {
-		DrawGraph(1000, 50, this->numberlH[firstTime], true);
-		DrawGraph(1060, 50, this->numberlH[secondTime], true);
-		DrawGraph(1120, 50, this->numberlH[10], true);
-		DrawGraph(1180, 50, this->numberlH[(int)(this->time * 10) % 10], true);
+	if (this->initialized ) {
+		if (time <= 100 && time >= 0) {
+			DrawGraph(1000, 50, this->numberlH[firstTime], true);
+			DrawGraph(1060, 50, this->numberlH[secondTime], true);
+			DrawGraph(1120, 50, this->numberlH[10], true);
+			DrawGraph(1180, 50, this->numberlH[(int)(this->time * 10) % 10], true);
+		}
+		else {
+			DrawGraph(1000, 50, this->numberlH[0], true);
+			DrawGraph(1060, 50, this->numberlH[0], true);
+			DrawGraph(1120, 50, this->numberlH[10], true);
+			DrawGraph(1180, 50, this->numberlH[0], true);
+		}
+		DrawGraph(690, 610, this->gaugeBackH, true);
+
+		DrawGraph(710, 615, this->iconWindowH, true);
+
+		DrawGraph(730, 620, this->icoFavH, true);
+
 	}
-	else {
-		DrawGraph(1000, 50, this->numberlH[0], true);
-		DrawGraph(1060, 50, this->numberlH[0], true);
-		DrawGraph(1120, 50, this->numberlH[10], true);
-		DrawGraph(1180, 50, this->numberlH[0], true);
-	}
 
-
-
-	DrawGraph(690, 610, this->gaugeBackH, true);
-
-	DrawGraph(710, 615, this->iconWindowH, true);
-
-	DrawGraph(730, 620, this->icoFavH, true);
 
 	if (this->favScore > 0) {
 		DrawExtendGraph(780, 623, 795, 648, this->numbersH[(int)(this->favScore / 10)], true);
@@ -268,17 +272,18 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 
 	DrawGraph(900, 620, this->icoRtH, true);
 
+	if (this->initialized) {
+		if (this->comboNumber == 0) {
+			DrawGraph(65, 630, this->numberlH[0], 1);
+			DrawGraph(125, 630, this->numberlH[0], 1);
+		}
+		else {
+			DrawGraph(65, 630, this->numberlH[this->comboNumber / 10], 1);
+			DrawGraph(125, 630, this->numberlH[this->comboNumber % 10], 1);
+		}
 
-	if (this->comboNumber == 0) {
-		DrawGraph(65, 630, this->numberlH[0], 1);
-		DrawGraph(125, 630, this->numberlH[0], 1);
-	}
-	else {
-		DrawGraph(65, 630, this->numberlH[this->comboNumber / 10], 1);
-		DrawGraph(125, 630, this->numberlH[this->comboNumber % 10], 1);
-	}
-
-	if (this->damage <= 100) {
-+		DrawBox(723, 670, 720 + (float)((float)(100 - this->damage) / 100.0f) * 520, 700, GetColor(0, 0, 255), 1);
+		if (this->damage <= 100) {
+			DrawBox(723, 670, 720 + (int)((float)((float)(100 - this->damage) / 100.0f) * 520), 700, GetColor(0, 0, 255), 1);
+		}
 	}
 }
