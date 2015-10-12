@@ -31,7 +31,6 @@ static ::Effekseer::Handle				g_handle = -1;
 
 void DeviceLostFunction(void *Data)
 {
-	printf("Start LostFunction\n");
 	// デバイスロストが発生した時に呼ぶ。
 	g_renderer->OnLostDevice();
 
@@ -41,12 +40,10 @@ void DeviceLostFunction(void *Data)
 	// DXライブラリは内部でデバイス自体を消去しているのでNULLを設定する。
 	g_renderer->ChangeDevice(NULL);
 
-	printf("End LostFunction\n");
 }
 
 void DeviceRestoreFunction(void *Data)
 {
-	printf("Start RestoreFunction\n");
 
 	// DXライブラリは回復時に内部でデバイスを再生成するので新しく設定する。
 	LPDIRECT3DDEVICE9 device = (LPDIRECT3DDEVICE9)GetUseDirect3DDevice9();
@@ -57,7 +54,6 @@ void DeviceRestoreFunction(void *Data)
 
 	// デバイスが復帰するときに呼ぶ
 	g_renderer->OnResetDevice();
-	printf("End RestoreFunction\n");
 }
 
 //解像度の指定
@@ -88,10 +84,8 @@ void Setup(){
 	//ウィンドウモードのタイトルを変更
 	SetWindowTextA("STAR ROAD DRAW ver 1.00"),
 
-	
-
 	//ログ出力を行うかのセット
-	SetOutApplicationLogValidFlag(true),
+	SetOutApplicationLogValidFlag(false),
 	
 	//ウィンドウの場合の画面モードの変更
 	SetGraphMode(Window::WIDTH, Window::HEIGHT, Window::COLOR_BIT),
@@ -107,7 +101,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// 描画用インスタンスの生成
 	LPDIRECT3DDEVICE9 device = (LPDIRECT3DDEVICE9)GetUseDirect3DDevice9();
-	g_renderer = ::EffekseerRendererDX9::Renderer::Create(device, 2000);
+	g_renderer = ::EffekseerRendererDX9::Renderer::Create(device, 4000);
 
 	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ
 	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
@@ -130,8 +124,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// デバイスロスト時のコールバック設定(フルスクリーンウインドウ切り替えのために必要)
 	SetGraphicsDeviceLostCallbackFunction(DeviceLostFunction, NULL);
 	SetGraphicsDeviceRestoreCallbackFunction(DeviceRestoreFunction, NULL);
-
-
 
 	// カメラを初期化
 
@@ -158,9 +150,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// カメラ行列を設定
 	g_renderer->SetCameraMatrix(efview);
-
-	// エフェクトの読込
-	g_effect = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/combo_0.efk");
 	
 	SceneManager* gameSceneManager = new SceneManager();
 
@@ -175,15 +164,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	}
 
-	// エフェクトの破棄
-	ES_SAFE_RELEASE(g_effect);
-
 	// エフェクト管理用インスタンスを破棄
 	g_manager->Destroy();
 
 	// 描画用インスタンスを破棄
 	g_renderer->Destory();
-
 
 	DxLib_End();
 

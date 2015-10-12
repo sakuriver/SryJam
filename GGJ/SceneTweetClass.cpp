@@ -58,7 +58,7 @@ void SceneTweetClass::render(::Effekseer::Manager* g_manager){
 		if (befor->move_change()){
 			drawCloud();
 		}
-			befor->draw();
+		befor->draw();
 		break;
 
 	case scene02:
@@ -68,7 +68,6 @@ void SceneTweetClass::render(::Effekseer::Manager* g_manager){
 	case scene03:
 		drawTweet();
 		break;
-
 
 	default:
 		break;

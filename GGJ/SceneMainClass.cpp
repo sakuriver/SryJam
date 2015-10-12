@@ -51,10 +51,10 @@ void SceneMainClass::initialize(::Effekseer::Manager* g_manager) {
 	}
 
 	this->body_power = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/body_power.efk");
-	this->fav_combo_first = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_0.efk");
+	this->fav_combo_first  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_0.efk");
 	this->fav_combo_second = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_2.efk");
-	this->rt_combo_first = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_0.efk");
-	this->rt_combo_second = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_2.efk");
+	this->rt_combo_first   = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_0.efk");
+	this->rt_combo_second  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_2.efk");
 	this->boss_death = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/boss_death.efk");
 	this->playSoundF = false;
 

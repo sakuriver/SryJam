@@ -11,7 +11,6 @@ SceneStaffrollClass::SceneStaffrollClass(int staffrollBgmH)
 {
 	// テクスチャパス
 	const char* path[ _MAX_TEX ] = {
-		//"Resources/bg.png",
 		"Resources/result.png",
 		"Resources/button_home.png",
 		"Resources/player_normal.png"
@@ -23,8 +22,15 @@ SceneStaffrollClass::SceneStaffrollClass(int staffrollBgmH)
 	}
 
 	// スタッフ文字情報
-
 	this->staffrollBgmH = staffrollBgmH;
+
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 1024; j++  ) {
+			if (this->tweetFont_[i][j] < 0) {
+			    this->tweetFont_[i][j] = '\0';
+			}
+		}
+	}
 
 }
 
@@ -74,7 +80,6 @@ void SceneStaffrollClass::update(::Effekseer::Manager* g_manager)
 
 	case PROC_CHANGE_SCENE:
 
-
 		// キー入力待機
 		if( CheckHitKey( KEY_INPUT_SPACE ) ) {
 			// タイトル画面移行
@@ -106,7 +111,7 @@ void SceneStaffrollClass::render(::Effekseer::Manager* g_manager)
 		SetFontSize(30);
 		ChangeFont("ＭＳ 明朝");
 		for (int i = 0; i < 5; i++) {
-			if (tweetFont_[i][0] != 0) {
+			if (tweetFont_[i][0] != -51 && tweetFont_[i][0] != 0) {
 				DrawFormatString(275, 260 + mResultPosY + (50 * i), GetColor(0, 0, 0), "%s", tweetFont_[i]);
 			}
 		}
