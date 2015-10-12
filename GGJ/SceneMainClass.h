@@ -58,4 +58,5 @@ private:
 	Effekseer::Effect* fav_combo_first;
 	Effekseer::Effect* fav_combo_second;
 	Effekseer::Effect* boss_death;
+	Effekseer::Effect* cursor;
 };

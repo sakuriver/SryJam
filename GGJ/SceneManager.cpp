@@ -15,9 +15,7 @@ SceneManager::SceneManager() {
 void SceneManager::changeScene(SceneBaseClass* scene) {
 
 	this->nowScene = scene;
-	this->fadeInFlg = false;
-	this->fadeOutFlg = false;
-	this->fadeValue = 0;
+	this->fadeValue = 255;
 }
 
  void  SceneManager::initialize() {
@@ -26,7 +24,6 @@ void SceneManager::changeScene(SceneBaseClass* scene) {
 	this->changeScene(new SceneBootClass());
 	this->deathSoundH = LoadSoundMem("Resources/game_death.ogg");
 	this->staffrollSoundH = LoadSoundMem("Resources/stafflole_bgm.ogg");
-	this->fadeInFlg = true;
 }
 
 
@@ -39,10 +36,6 @@ void SceneManager::update(::Effekseer::Manager* g_manager) {
 		this->nowScene->initialize(g_manager);
 	}
 	else {
-
-		if (this->fadeInFlg || this->fadeOutFlg) {
-			return;
-		}
 
 		this->nowScene->update(g_manager);
 		if (this->nowScene->getNextSceneName() != "") {
@@ -57,7 +50,7 @@ void SceneManager::render(::Effekseer::Manager* g_manager, ::EffekseerRendererDX
 	
 	this->nowScene->render(g_manager);
 
-	// 頂点バッファに溜まった頂点データを吐き出す
+	// 頂点バッファに溜まった頂点データを吐き出す/*
 	RenderVertex();
 
 	// エフェクトの更新処理を行う
@@ -75,18 +68,10 @@ void SceneManager::render(::Effekseer::Manager* g_manager, ::EffekseerRendererDX
 	// DXライブラリの設定を戻す。
 	RefreshDxLibDirect3DSetting();
 	
-	// フェードイン・フェードアウトを呼ぶ
-	fadeIn();
-	fadeOut();
-	fadeDraw();
 }
 
 
 void SceneManager::updateScene(::Effekseer::Manager* g_manager) {
-
-	if (this->fadeOutFlg) {
-		return;
-	}
 
 	
 	if (this->nowScene->getPlaySoundFlag()) {
@@ -94,69 +79,34 @@ void SceneManager::updateScene(::Effekseer::Manager* g_manager) {
 	}
 
 	if (this->nowScene->getNextSceneName() == "Title") {
-		this->fadeOutFlg = true;
 		this->nowScene = new SceneTitleClass(g_manager);
 	}
 	else if (this->nowScene->getNextSceneName() == "Main") {
-		this->fadeOutFlg = true;
 		this->nowScene = new SceneMainClass(this->mainSoundH);
 	}
 	else if (this->nowScene->getNextSceneName() == "GameOver") {
-		this->fadeOutFlg = true;
 		StopSoundMem(this->mainSoundH);
 		PlaySoundMem(this->deathSoundH, DX_PLAYTYPE_BACK);
 		this->nowScene = new SceneGameOverClass(g_manager);
 	}
 	else if (this->nowScene->getNextSceneName() == "Tweet") {
-		this->fadeOutFlg = true;
 		PlaySoundMem(this->staffrollSoundH, DX_PLAYTYPE_LOOP);
+		int favNumber = this->nowScene->getFavNumber();
+		int rtNumber = this->nowScene->getRtNumber();
 		this->nowScene = new SceneTweetClass();
+		this->nowScene->setRtNumber(rtNumber);
+		this->nowScene->setFavNumber(favNumber);
 	} else if (this->nowScene->getNextSceneName() == "Staffroll") {
-		this->fadeOutFlg = true;
 		char* tweetMessage = this->nowScene->getTweetMessage();
+		int favNumber = this->nowScene->getFavNumber();
+		int rtNumber = this->nowScene->getRtNumber();
 		this->nowScene = new SceneStaffrollClass(this->staffrollSoundH);
 		this->nowScene->setTweetMessage(tweetMessage);
+		this->nowScene->setRtNumber(rtNumber);
+		this->nowScene->setFavNumber(favNumber);
 	}
 	
 	this->nowScene->setNextSceneName("");
 
-}
-
-void SceneManager::fadeIn() {
-	if (!fadeInFlg) {
-		return;
-	}
-
-	this->fadeValue+=3;
-
-	if (this->fadeValue > 255) {
-		this->fadeInFlg = false;
-		this->fadeValue = 255;
-	}
-
-}
-
-void SceneManager::fadeOut() {
-	if (!fadeOutFlg) {
-		return;
-	}
-
-	this->fadeValue-=3;
-
-	if (this->fadeValue < 0) {
-		this->fadeOutFlg = false;
-		this->fadeInFlg = true;
-		this->fadeValue = 0;
-	}
-
-}
-
-void SceneManager::fadeDraw() {
-
-	if (!this->fadeInFlg && !this->fadeOutFlg) {
-		return;
-	}
-
-	DrawBox(0, 0, 1280, 720, GetColor(255, 255, 255), true);
 }
 

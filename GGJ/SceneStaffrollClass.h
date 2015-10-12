@@ -60,7 +60,6 @@ private:
 
 	int	mTexHandle[_MAX_TEX];		// テクスチャハンドル
 	std::list< sStaffData > mStaffData;		// スタッフ文字
-
 	int mResultPosY;
 	int mPlayerPosX;
 	int mPlayerPosY;

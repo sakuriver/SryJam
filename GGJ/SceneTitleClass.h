@@ -20,4 +20,5 @@ private:
 	int titleStartButton;
 	int titleStar[10][3];
 	int favGetH;
+	Effekseer::Effect* cursor;
 };

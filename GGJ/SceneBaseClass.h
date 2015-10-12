@@ -34,21 +34,27 @@ public:
 		this->playSoundF = false;
 	};
 	virtual ~SceneBaseClass(){};
-	virtual void initialize(::Effekseer::Manager* g_manager){ };
-	virtual void update(::Effekseer::Manager* g_manager){};
-	virtual void render(::Effekseer::Manager* g_manager){};
-	bool getInitialize() { return this->initialized; };
-	void setInitialize(bool initialize);
-	char* getNextSceneName(){ return this->nextSceneName; };
-	char* getTweetMessage() { return &this->tweetFont_[0][0]; };
-	void setNextSceneName(char* nextSceneName){ this->nextSceneName = nextSceneName; };
+	virtual void initialize(::Effekseer::Manager* g_manager){ }
+	virtual void update(::Effekseer::Manager* g_manager){}
+	virtual void render(::Effekseer::Manager* g_manager){}
+	bool getInitialize() { return this->initialized; }
+	void setInitialize(bool initialize){ this->initialized = initialize; }
+	char* getNextSceneName(){ return this->nextSceneName; }
+	char* getTweetMessage() { return &this->tweetFont_[0][0]; }
+	void setNextSceneName(char* nextSceneName){ this->nextSceneName = nextSceneName; }
 	bool getPlaySoundFlag() { return this->playSoundF; };
+	int  getFavNumber() { return this->favNumer; }
+	int  getRtNumber() { return this->rtNumber; }
 	void setPlaySoundFlag(bool playSoundF) { this->playSoundF = playSoundF; }
 	void setTweetMessage(char* tweetFont_) { memcpy(&this->tweetFont_[0][0], tweetFont_, strlen(tweetFont_)); };
+	void setFavNumber(int favNumber){ this->favNumer = favNumber; }
+	void setRtNumber(int rtNumber){ this->rtNumber = rtNumber; }
 protected:
 	char* nextSceneName;
 	bool initialized;
 	int  bgGraphH;
 	bool playSoundF;
 	char tweetFont_[5][1024];
+	int rtNumber;
+	int favNumer;
 };

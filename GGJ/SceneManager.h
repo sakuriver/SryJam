@@ -25,8 +25,6 @@ protected:
 	int mainSoundH;
 	int deathSoundH;
 	int staffrollSoundH;
-	bool fadeInFlg;
-	bool fadeOutFlg;
 	int fadeValue;
 	void fadeIn();
 	void fadeOut();

@@ -18,4 +18,5 @@ private:
 	int titleLogoForth;
 	int count;
 	int favGetH;
+	Effekseer::Effect* cursor;
 };

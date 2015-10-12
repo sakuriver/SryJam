@@ -109,12 +109,15 @@ void SceneStaffrollClass::render(::Effekseer::Manager* g_manager)
 			DrawGraph( it->x, it->y, it->image, true);
 		}
 		SetFontSize(30);
-		ChangeFont("‚l‚r –¾’©");
+		ChangeFont("ƒƒCƒŠƒI");
 		for (int i = 0; i < 5; i++) {
 			if (tweetFont_[i][0] != -51 && tweetFont_[i][0] != 0) {
 				DrawFormatString(275, 260 + mResultPosY + (50 * i), GetColor(0, 0, 0), "%s", tweetFont_[i]);
 			}
 		}
+		SetFontSize(45);
+		DrawFormatString(255, 535 + mResultPosY, GetColor(0, 0, 0), "%d", rtNumber);
+		DrawFormatString(735, 535 + mResultPosY, GetColor(0, 0, 0), "%d", favNumer);
 		break;
 
 	case PROC_MOVEPLAYER:

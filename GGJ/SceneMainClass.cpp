@@ -32,12 +32,12 @@ void SceneMainClass::initialize(::Effekseer::Manager* g_manager) {
 
 	LoadDivGraph("Resources/num_s.png", 11, 11, 1, 30, 50, this->numbersH);
 
-	this->icoFavH = LoadGraph("Resources/fav_ico_s.png");
+	icoFavH = LoadGraph("Resources/fav_ico_s.png");
 
-	this->icoRtH = LoadGraph("Resources/rt_ico_s.png");
+	icoRtH = LoadGraph("Resources/rt_ico_s.png");
 
-	this->comboNumber = 0;
-	this->comboStartTime = 0;
+	comboNumber = 0;
+	comboStartTime = 0;
 
 	//(x,y,direction)
 	corona->setXY(0, 0, 0);
@@ -50,15 +50,17 @@ void SceneMainClass::initialize(::Effekseer::Manager* g_manager) {
 		block.push_back(new MapObject("Resources/dkdk.png", "Resources/kuso_twe.wav"));
 	}
 
-	this->body_power = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/body_power.efk");
-	this->fav_combo_first  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_0.efk");
-	this->fav_combo_second = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_2.efk");
-	this->rt_combo_first   = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_0.efk");
-	this->rt_combo_second  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_2.efk");
-	this->boss_death = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/boss_death.efk");
-	this->playSoundF = false;
+	body_power = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/body_power.efk");
+	fav_combo_first  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_0.efk");
+	fav_combo_second = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/fav_combo_2.efk");
+	rt_combo_first   = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_0.efk");
+	rt_combo_second  = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/rt_combo_2.efk");
+	boss_death = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/boss_death.efk");
+	cursor = Effekseer::Effect::Create(g_manager, (const EFK_CHAR*)L"Resources/effect/cursor.efk");
+	playSoundF = false;
 
-	this->initialized = true;
+	initialized = true;
+
 }
 
 void SceneMainClass::update(::Effekseer::Manager* g_manager) {
@@ -175,6 +177,8 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 	KeyboardClass* key_ = KeyboardClass::getInstance();
 	if (this->stageClearFlg || key_->GetPressingCount(KEY_INPUT_B)) {
 		this->nextSceneName = "Tweet";
+		this->favNumer = favScore;
+		this->rtNumber = rtScore;
 	}
 
 	if (this->comboStartTime > 0 && this->Time[1] > this->comboStartTime + 1500) {
@@ -266,24 +270,28 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 		DrawExtendGraph(950, 623, 965, 648, this->numbersH[9], true);
 		DrawExtendGraph(970, 623, 985, 648, this->numbersH[9], true);
 	} else {
-		DrawExtendGraph(950, 623, 965, 648, this->numbersH[0], true);
-		DrawExtendGraph(970, 623, 985, 648, this->numbersH[0], true);
+		DrawExtendGraph(950, 623, 965, 648, numbersH[0], true);
+		DrawExtendGraph(970, 623, 985, 648, numbersH[0], true);
 	}
 
 	DrawGraph(900, 620, this->icoRtH, true);
 
-	if (this->initialized) {
-		if (this->comboNumber == 0) {
-			DrawGraph(65, 630, this->numberlH[0], 1);
-			DrawGraph(125, 630, this->numberlH[0], 1);
+	if (initialized) {
+		if (comboNumber == 0) {
+			DrawGraph(65, 630, numberlH[0], 1);
+			DrawGraph(125, 630, numberlH[0], 1);
 		}
 		else {
-			DrawGraph(65, 630, this->numberlH[this->comboNumber / 10], 1);
-			DrawGraph(125, 630, this->numberlH[this->comboNumber % 10], 1);
+			DrawGraph(65, 630, numberlH[comboNumber / 10], 1);
+			DrawGraph(125, 630, numberlH[comboNumber % 10], 1);
 		}
 
 		if (this->damage <= 100) {
-			DrawBox(723, 670, 720 + (int)((float)((float)(100 - this->damage) / 100.0f) * 520), 700, GetColor(0, 0, 255), 1);
+			DrawBox(723, 670, 720 + (int)((float)((float)(100 - damage) / 100.0f) * 520), 700, GetColor(0, 0, 255), 1);
+			int cursor_handle = 0;
+			cursor_handle = g_manager->Play(cursor, 0.0f, 0.0f, 0.0f);
+			g_manager->SetScale(cursor_handle, 15, 15, 15);
+			g_manager->SetLocation(cursor_handle, corona->returnX() + 15, 720 - corona->returnY() - 148, 0.0f);
 		}
 	}
 }
