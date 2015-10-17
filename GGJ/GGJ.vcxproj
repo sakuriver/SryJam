@@ -86,14 +86,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Application.cpp" />
     <ClCompile Include="change.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="KeyboardClass.cpp" />
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Player_K.cpp" />
-    <ClCompile Include="ReadFileData.cpp" />
     <ClCompile Include="SceneBootClass.cpp" />
     <ClCompile Include="SceneGameOverClass.cpp" />
     <ClCompile Include="SceneMainClass.cpp" />

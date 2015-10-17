@@ -36,27 +36,16 @@ class Enemy : public Animation, public Unit, public Move{
 		float getCenterX();
 		float getCenterY();
 
-		//Enemyの画像Xサイズを取得する関数
 		int getSizeX();
-		//Enemyの画像Yサイズを取得する関数
 		int getSizeY();
 
-		//EnemyのXY値を設定
 		void setXY(float x, float y);
 
-		//Enemyのstate値を設定
 		void setState(EnemyMode);
 
-		//EnemyのState値を設定
 		EnemyMode getState() { return this->state; };
 
 	private:
-		//Enemyの表示関数
-		void draw();
-
-		//alpha付き表示関数
-		//x座標, y座標, alpha値, imageHandle
-		void DrawGraphAlpha(float, float, int, int*);
 
 		//Enemyの画像ハンドル
 		int imgHandle[3];
@@ -64,14 +53,19 @@ class Enemy : public Animation, public Unit, public Move{
 		//Enemyの行動パターンを格納する配列
 		int mp_fp[3];
 
-		//Enemyの座標
-		float x, y;
+		//X座標
+		float x;
+
+		//Y座標
+		float y;
 
 		//Enemyの中心座標
-		float centerX, centerY;
+		float centerX;
+		float centerY;
 
 		//Enemyのサイズ
-		int sizeX, sizeY;
+		int sizeX;
+		int	sizeY;
 
 		//Enemyの透明度
 		int alpha;
@@ -85,11 +79,23 @@ class Enemy : public Animation, public Unit, public Move{
 		//Enemyを動かすためのMoveクラスの変数
 		Move* m;
 
+		//移動先のXY値
+		float move_x;
+		float move_y;
+
+		//移動先までにかけるフレーム数
+		int move_frame;
+
 		//Enemyの動作関数
 		void moving();
 
-		//移動先のXY値
-		float move_x, move_y;
-		//移動先までにかけるフレーム数
-		int move_frame;
+		//Enemyの表示関数
+		void draw();
+
+		//alpha付き表示関数
+		//x座標, y座標, alpha値, imageHandle
+		void DrawGraphAlpha(float, float, int, int*);
+
+
+
 };

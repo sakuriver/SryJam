@@ -6,7 +6,6 @@ enum Object :int{
 	RT,
 	BLOCK,
 	KUSO,
-
 	UNKNOWN,
 };
 
@@ -27,20 +26,20 @@ public:
 	virtual void updata(const int player_x, const int player_y, const int stage);
 
 	//X•æ“¾
-	int returnSizeX(){
+	int getSizeX(){
 		return sizeX_;
 	}
 
 	//Y•æ“¾
-	int returnSizeY(){
+	int getSizeY(){
 		return sizeY_;
 	}
 
-	int returnX(){
+	int getX(){
 		return x_;
 	}
 
-	int returnY(){
+	int getY() {
 		return y_;
 	}
 	

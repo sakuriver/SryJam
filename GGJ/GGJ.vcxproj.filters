@@ -27,13 +27,7 @@
     <ClCompile Include="Animation.cpp">
       <Filter>ソース ファイル\reuse</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
     <ClCompile Include="Player_K.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="ReadFileData.cpp">
       <Filter>ソース ファイル\reuse</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
