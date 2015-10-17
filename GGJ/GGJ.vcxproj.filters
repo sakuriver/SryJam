@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\reuse">
-      <UniqueIdentifier>{e0cda983-9782-42a3-8949-259fd3a29f26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="test">
       <UniqueIdentifier>{f87ad950-71f0-487c-8a7e-86ff90f1766b}</UniqueIdentifier>
     </Filter>
@@ -23,24 +20,6 @@
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="Player_K.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardClass.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="MapObject.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClCompile>
-    <ClCompile Include="change.cpp">
-      <Filter>ソース ファイル\reuse</Filter>
     </ClCompile>
     <ClCompile Include="SceneTitleClass.cpp">
       <Filter>ソース ファイル</Filter>
@@ -69,35 +48,26 @@
     <ClCompile Include="SceneStaffrollClass.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_K.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardClass.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="change.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardClass.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="Player_K.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="SingletonClass.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="Unit.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="MapObject.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
-    <ClInclude Include="Change.h">
-      <Filter>ソース ファイル\reuse</Filter>
-    </ClInclude>
     <ClInclude Include="SceneBaseClass.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -126,6 +96,33 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonClass.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_K.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardClass.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Change.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
