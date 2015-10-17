@@ -69,7 +69,7 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 
 	for (unsigned int i = 0; i < star.size(); i++){
 		
-		if (this->corona->getAttackMotionNo() == 1 && star[i]->hitCheck(corona->returnX(), corona->returnY())) {
+		if (this->corona->getAttackMotionNo() == 1 && star[i]->hitCheck(corona->getX(), corona->getY())) {
 			int combo_handle = 0; 
 			this->comboStartTime = this->Time[1];
 			this->comboNumber++;
@@ -79,18 +79,18 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 				combo_handle = g_manager->Play(fav_combo_first, 0.0f, 0.0f, 0.0f);
 			}
 			g_manager->SetScale(combo_handle, 20, 20, 20);
-			g_manager->SetLocation(combo_handle, corona->returnX() + 140, 720 - corona->returnY() - 90, 0.0f);
+			g_manager->SetLocation(combo_handle, corona->getX() + 140, 720 - corona->getY() - 90, 0.0f);
 			
 			this->favScore += (int)(this->comboNumber * 1.5f);
 		}
 		
-		star[i]->updata(corona->returnX(), corona->returnY(), 1);
+		star[i]->update(corona->getX(), corona->getY(), 1);
 		
 	}
 
 	for (unsigned int i = 0; i < rt.size(); i++){
 		
-		if (this->corona->getAttackMotionNo() == 1 && rt[i]->hitCheck(corona->returnX(), corona->returnY())) {
+		if (this->corona->getAttackMotionNo() == 1 && rt[i]->hitCheck(corona->getX(), corona->getY())) {
 			int combo_handle = 0;
 			this->comboStartTime = this->Time[1];
 			this->comboNumber++;
@@ -101,37 +101,37 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 			}
 			
 			g_manager->SetScale(combo_handle, 20, 20, 20);
-			g_manager->SetLocation(combo_handle, corona->returnX() + 140, 720 - corona->returnY() - 90, 0.0f);
+			g_manager->SetLocation(combo_handle, corona->getX() + 140, 720 - corona->getY() - 90, 0.0f);
 			this->rtScore+= (int)(this->comboNumber * 1.5f);
 		}
 
-		rt[i]->updata(corona->returnX(), corona->returnY(), 3);
+		rt[i]->update(corona->getX(), corona->getY(), 3);
 
 	}
 
 	for (unsigned int i = 0; i < kuso.size(); i++){
 
-		if (this->corona->getAttackMotionNo() == 1 && kuso[i]->hitCheck(corona->returnX(), corona->returnY())) {
+		if (this->corona->getAttackMotionNo() == 1 && kuso[i]->hitCheck(corona->getX(), corona->getY())) {
 			this->damage += 20;
 		}
 
-		kuso[i]->updata(corona->returnX(), corona->returnY(), 2);
+		kuso[i]->update(corona->getX(), corona->getY(), 2);
 
 	}
 
 	for (unsigned int i = 0; i < block.size(); i++){
 
-		if (this->corona->getAttackMotionNo() == 1 && block[i]->hitCheck(corona->returnX(), corona->returnY())) {
+		if (this->corona->getAttackMotionNo() == 1 && block[i]->hitCheck(corona->getX(), corona->getY())) {
 			this->damage += 24;
 		}
 
-		block[i]->updata(corona->returnX(), corona->returnY(), 1);
+		block[i]->update(corona->getX(), corona->getY(), 1);
 
 	}
 
 
 	if (this->damage <= 99) {
-		corona->updata(true);
+		corona->update(true);
 	}
 
 	if (this->time < 0) {
@@ -142,7 +142,7 @@ void SceneMainClass::update(::Effekseer::Manager* g_manager) {
 			this->bossApeearFlg = true;
 		}
 
-		this->boss->updata(true);
+		this->boss->update(true);
 
 		if ((this->boss->getState() == EnemyMode::E_ATTACK || this->boss->getState() == EnemyMode::E_MOVE) &&
 			this->boss->CD(this->corona) && this->corona->getAttackMotionNo() == 1) {
@@ -197,19 +197,19 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 	}
 
 	for (unsigned int i = 0; i < star.size(); i++){
-		star[i]->render(corona->returnX(), corona->returnY());
+		star[i]->render(corona->getX(), corona->getY());
 	}
 
 	for (unsigned int i = 0; i < rt.size(); i++){
-		rt[i]->render(corona->returnX(), corona->returnY());
+		rt[i]->render(corona->getX(), corona->getY());
 	}
 
 	for (unsigned int i = 0; i < kuso.size(); i++){
-		kuso[i]->render(corona->returnX(), corona->returnY());
+		kuso[i]->render(corona->getX(), corona->getY());
 	}
 
 	for (unsigned int i = 0; i < block.size(); i++){
-		block[i]->render(corona->returnX(), corona->returnY());
+		block[i]->render(corona->getX(), corona->getY());
 	}
 
 	if (this->initialized) {
@@ -219,7 +219,7 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 	if (this->initialized && body_power != NULL && corona->getAttackMotionNo() == 1 && corona->getAttackNowMotionFrameNo() == 1) {
 		int body_handle = g_manager->Play(body_power, 0.0f, 0.0f, 0.0f);
 		g_manager->SetScale(body_handle, 20, 20, 20);
-		g_manager->SetLocation(body_handle, corona->returnX() + 140, 720 - corona->returnY() - 90, 0.0f);
+		g_manager->SetLocation(body_handle, corona->getX() + 140, 720 - corona->getY() - 90, 0.0f);
 	}
 
 	DrawGraph(0, 600, this->comboH, true);
@@ -291,7 +291,7 @@ void SceneMainClass::render(::Effekseer::Manager* g_manager) {
 			int cursor_handle = 0;
 			cursor_handle = g_manager->Play(cursor, 0.0f, 0.0f, 0.0f);
 			g_manager->SetScale(cursor_handle, 15, 15, 15);
-			g_manager->SetLocation(cursor_handle, corona->returnX() + 15, 720 - corona->returnY() - 148, 0.0f);
+			g_manager->SetLocation(cursor_handle, corona->getX() + 15, 720 - corona->getY() - 148, 0.0f);
 		}
 	}
 }

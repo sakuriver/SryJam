@@ -36,7 +36,7 @@ void MapObject::render(const int player_x, const int player_y){
 
 }
 
-void MapObject::updata(const int player_x, const int player_y,const int stage){
+void MapObject::update(const int player_x, const int player_y,const int stage){
 
 	if (time < count){
 

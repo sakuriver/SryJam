@@ -23,7 +23,7 @@ public:
 	virtual void render(const int player_x, const int player_y);
 
 	//XV
-	virtual void updata(const int player_x, const int player_y, const int stage);
+	virtual void update(const int player_x, const int player_y, const int stage);
 
 	//X•æ“¾
 	int getSizeX(){

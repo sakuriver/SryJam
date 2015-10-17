@@ -23,7 +23,7 @@ class Enemy : public Animation, public Unit, public Move{
 		~Enemy();
 
 		void render()override;
-		void updata(bool through)override;
+		void update(bool through)override;
 
 		//Enemyとの衝突判定 CD:collision detection
 		bool CD(Player_K*);
@@ -95,7 +95,5 @@ class Enemy : public Animation, public Unit, public Move{
 		//alpha付き表示関数
 		//x座標, y座標, alpha値, imageHandle
 		void DrawGraphAlpha(float, float, int, int*);
-
-
 
 };

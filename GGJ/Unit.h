@@ -13,9 +13,9 @@ protected:
 	//描写
 	virtual void render() = 0;
 	//更新処理
-	virtual void updata(bool through){};
+	virtual void update(bool through){};
 	
-	virtual void updata(int through){};
+	virtual void update(int through){};
 
 	//画像読み込み用メソッド
 	//ファイル名/配列/縦数/横数

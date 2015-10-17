@@ -21,16 +21,16 @@ public:
 	}
 
 	void render()override;
-	void updata(bool through)override;
+	void update(bool through)override;
 
 	//座標&向き　セット
 	void setXY(const float x, const float y, const int _dic);
 
-	float returnX(){
+	float getX(){
 		return x_;
 	}
 
-	float returnY(){
+	float getY() {
 		return y_;
 	}
 

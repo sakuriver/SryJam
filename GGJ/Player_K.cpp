@@ -58,7 +58,7 @@ void Player_K::render(){
 	draw();
 }
 
-void Player_K::updata(bool through){
+void Player_K::update(bool through){
 	KeyboardClass* key_ = KeyboardClass::getInstance();
 	if (through){
 		key_->update();

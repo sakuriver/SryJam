@@ -8,17 +8,6 @@
 #include "Player_K.h"
 #include "Unit.h"
 
-/*
-boss1.txt内にbossを表示させるのに必要な画像のファイルパスが
-書き込まれている
-
-Enemy* e = new Enemy("Resources/boss/boss1.txt");
-
-e->updata(true);
-e->render()
-
-*/
-
 /* コンストラクタ */
 /* bossの画像ファイルパスが記述されたテキストファイルを引数に取る */
 Enemy::Enemy(char *str){
@@ -96,18 +85,18 @@ int Enemy::getSizeY(){
 
 /* プレイヤーとの衝突判定 */
 bool Enemy::CD(Player_K* player){
-	if (fabs(player->returnX() +140 - this->getCenterX()) < this->getSizeX() / 2 || 
-		fabs(player->returnX()+170 - this->getCenterX()) < this->getSizeX() / 2){
-		if (fabs(player->returnY() - this->getCenterY() + 90) < this->getSizeY() / 2 ||
-			fabs(player->returnY() + 120 - this->getCenterY()) < this->getSizeY() / 2){
+	if (fabs(player->getX() +140 - this->getCenterX()) < this->getSizeX() / 2 || 
+		fabs(player->getX()+170 - this->getCenterX()) < this->getSizeX() / 2){
+		if (fabs(player->getY() - this->getCenterY() + 90) < this->getSizeY() / 2 ||
+			fabs(player->getY() + 120 - this->getCenterY()) < this->getSizeY() / 2){
 			return true;
 		}
 	}
 	return false;
 }
 
-/* updata関数(毎フレーム呼び出す) */
-void Enemy::updata(bool through){
+/* update関数(毎フレーム呼び出す) */
+void Enemy::update(bool through){
 	KeyboardClass* key = KeyboardClass::getInstance();
 
 	switch (state){
